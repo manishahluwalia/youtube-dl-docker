@@ -1,0 +1,27 @@
+#!/bin/bash
+
+YOUTUBEDL=youtube-dl
+DOCKER_CONTAINER_NAME=fakepseudonym/youtube-dl
+
+WORKDIR=/Downloads
+
+# Special case --help or -h, to replace python executable invocation command with docker invocation
+if [[ $# -eq 1 && ( "$1" == "--help" || "$1" == "-h" ) ]]
+then
+  $YOUTUBEDL --help | sed 's/Usage: youtube-dl /Usage: docker run -v \/dir\/to\/store\/downloaded\/files:'"$(echo -n "$WORKDIR $DOCKER_CONTAINER_NAME" | sed 's/\//\\\//g')"' /'
+  exit 0
+fi
+
+# Check that the WORKDIR is mounted
+if [[ ! -r $WORKDIR || ! -x $WORKDIR ]]
+then
+  cat >&2 <<EOM
+Error: Looks like you have not mounted a shared volume at $WORKDIR. Please
+mount that before running this container. e.g.
+docker run -v /dir/to/store/downloaded/files:$WORKDIR $DOCKER_CONTAINER_NAME 'https://youtube.com/url'
+EOM
+  exit 1
+fi
+
+cd $WORKDIR
+$YOUTUBEDL "$@"
