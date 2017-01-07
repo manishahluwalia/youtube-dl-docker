@@ -4,7 +4,7 @@
 
 The container downloads all files in a `/Downloads` directory inside the container. This means that you have to share the (host) directory where you really want to store the downloaded files and [bind mount](https://docs.docker.com/engine/tutorials/dockervolumes/#/mount-a-host-directory-as-a-data-volume) the target host directory inside the container as `/Downloads`.
 
-  docker run -v /dir/to/store/files:/Downloads fakepseudonym/youtube-dl 'https://youtube.com/url'
+    docker run -v /dir/to/store/files:/Downloads fakepseudonym/youtube-dl 'https://youtube.com/url'
 
 If you forget to bind mount `/Downloads`, the container will complain.
 
