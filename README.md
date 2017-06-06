@@ -1,6 +1,6 @@
 # Docker container for youtube-dl and dependencies
 
-[youtube-dl](https://github.com/rg3/youtube-dl) is a really cool tool. However, many operations require dependencies. This is [docker](https://www.docker.com) container with these dependencies built-in. With this, you can use youtube-dl with one (docker) command without having to preinstall the tool or its dependencies.
+[youtube-dl](https://github.com/rg3/youtube-dl) is a really cool tool. However, many operations require dependencies. This is a [docker](https://www.docker.com) container with these dependencies built-in. With this, you can use youtube-dl with one (docker) command without having to preinstall the tool or its dependencies.
 
 The container downloads all files in a `/Downloads` directory inside the container. This means that you have to share the (host) directory where you really want to store the downloaded files and [bind mount](https://docs.docker.com/engine/tutorials/dockervolumes/#/mount-a-host-directory-as-a-data-volume) the target host directory inside the container as `/Downloads`.
 
