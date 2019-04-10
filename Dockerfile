@@ -4,8 +4,8 @@ MAINTAINER Manish Ahluwalia, manish.ahluwalia@gmail.com
 
 # Install the dependencies for youtube, then install youtube-dl itself
 RUN apt-get update \
-     && apt-get install -y python ffmpeg mplayer aria2 libav-tools axel curl wget httpie \
-     && wget https://yt-dl.org/downloads/latest/youtube-dl -O /usr/local/bin/youtube-dl \
+     && apt-get install -y python ffmpeg mplayer aria2 libav-tools axel curl wget httpie
+RUN wget https://yt-dl.org/downloads/latest/youtube-dl -O /usr/local/bin/youtube-dl \
      && chmod a+rx /usr/local/bin/youtube-dl
 
 COPY youtube-dl-wrapper /
