@@ -1,0 +1,5 @@
+#!/bin/bash -e -x
+
+VERSION=$(docker run --rm --entrypoint bash $IMAGE_NAME -c 'cat /VERSION')
+docker tag $IMAGE_NAME $DOCKER_REPO:$VERSION
+docker push $DOCKER_REPO:$VERSION
