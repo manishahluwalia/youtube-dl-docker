@@ -12,8 +12,7 @@ ARG VERSION
 
 LABEL youtube-dl version $VERSION
 
-# If the version we will use has changed, force a modification of the image stack. This is needed because
-# the command iteslf doesn't change with different versions, so docker build has no way of knowing that something has changed if the version of youtube-dl changes.
+# Write version in the filesystem
 RUN echo $VERSION > /VERSION
 
 # install youtube-dl itself
