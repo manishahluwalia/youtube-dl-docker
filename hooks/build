@@ -1,4 +1,4 @@
-#!/bin/bash -e -x
+#!/bin/bash -ex
 
 VERSION=$(curl -s --write-out "%{redirect_url}" https://yt-dl.org/downloads/latest/youtube-dl  | sed 's/^.*\/downloads\///' | sed 's/\/youtube-dl.*//')
 docker build --build-arg VERSION=VERSION -t $IMAGE_NAME .

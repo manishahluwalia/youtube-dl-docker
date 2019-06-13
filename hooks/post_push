@@ -1,4 +1,4 @@
-#!/bin/bash -e -x
+#!/bin/bash -ex
 
 VERSION=$(docker run --rm --entrypoint bash $IMAGE_NAME -c 'cat /VERSION')
 docker tag $IMAGE_NAME $DOCKER_REPO:$VERSION
