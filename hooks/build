@@ -1,5 +1,5 @@
 #!/bin/bash -ex
 
-VERSION=$(curl -s --write-out "%{redirect_url}" https://yt-dl.org/downloads/latest/youtube-dl  | sed 's/^.*\/downloads\///' | sed 's/\/youtube-dl.*//')
-docker build --build-arg VERSION=$VERSION -t $IMAGE_NAME .
+YT_DL_URL=$(curl -s --write-out "%{redirect_url}" https://yt-dl.org/downloads/latest/youtube-dl)
+docker build --build-arg YT_DL_URL=$YT_DL_URL -t $IMAGE_NAME .
 docker tag $IMAGE_NAME $DOCKER_REPO:$VERSION

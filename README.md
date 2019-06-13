@@ -11,3 +11,10 @@ If you forget to bind mount `/Downloads`, the container will complain.
 The github repo is at [https://github.com/manishahluwalia/youtube-dl-docker](https://github.com/manishahluwalia/youtube-dl-docker).
 
 The docker hub for the image is at [https://hub.docker.com/r/fakepseudonym/youtube-dl/](https://hub.docker.com/r/fakepseudonym/youtube-dl/).
+
+
+## Building
+
+This is meant to be build via the build hook in hooks/build. Docker hub uses this automatically, so that's the easiest way to build it. If you'd like to build it yourself, invoke the hook:
+
+    ./hooks/build

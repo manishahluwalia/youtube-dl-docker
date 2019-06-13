@@ -8,16 +8,14 @@ RUN apt-get update
 # Install the dependencies for youtube-dl
 RUN apt-get install -y python ffmpeg mplayer aria2 libav-tools axel curl wget httpie
 
-# The version of youtube-dl
-ARG VERSION
-
-LABEL youtube-dl version $VERSION
+# The URL to download youtube-dl from. We resolve the redirect and get the final download url, with the version, upfront so that everyone has the same version (i.e. we cover for the extremely rare case when a new version is release in the middle of a build!)
+ARG YT_DL_URL
 
 # Write version in the filesystem
-RUN echo $VERSION > /VERSION
+RUN echo $YT_DL_URL | sed 's/^.*\/downloads\///' | sed 's/\/youtube-dl.*//' > /VERSION
 
 # install youtube-dl itself
-RUN wget https://yt-dl.org/downloads/latest/youtube-dl -O /usr/local/bin/youtube-dl \
+RUN wget ${YT_DL_URL#302} -O /usr/local/bin/youtube-dl \
      && chmod a+rx /usr/local/bin/youtube-dl
 
 COPY youtube-dl-wrapper /
