@@ -2,10 +2,11 @@ FROM ubuntu:xenial
 
 MAINTAINER Manish Ahluwalia, manish.ahluwalia@gmail.com
 
+# Update box
+RUN apt-get update
 
-# Install the dependencies for youtube
-RUN apt-get update \
-     && apt-get install -y python ffmpeg mplayer aria2 libav-tools axel curl wget httpie
+# Install the dependencies for youtube-dl
+RUN apt-get install -y python ffmpeg mplayer aria2 libav-tools axel curl wget httpie
 
 # The version of youtube-dl
 ARG VERSION
